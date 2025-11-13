@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Citações</title>
+    <style>
+        body{
+    background-image: linear-gradient(45deg, rgb(255, 0, 98),
+    rgb(37, 17, 224),
+    rgb(37, 1, 10),
+    rgb(255, 0, 98));
+    animation: fundoanimado 6s infinite ease-in-out alternate;
+    background-size: 800% 800%;
+    padding: 150px;
+        }
+
+        .quote-box-project {
+    text-align: center;
+    padding: 30px 40px;
+    border-radius: 8px;
+    border-left: 8px solid #007bff;
+    position: relative;
+    color: white;
+    backdrop-filter: blur(3px);
+    background-color: rgba(0, 0, 0, 0.2);
+    -webkit-backdrop-filter: blur(10px);
+    }
+
+@keyframes fundoanimado {
+    0%{
+        background-position: 0%;
+    }
+    50%{
+        background-position: 50%;
+    }
+    100%{
+        background-position: 100%;
+    }
+}
+.quote-box-project::before {
+    content: '“';
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    font-size: 6em;
+    color:white;
+}
+.quote-box-project blockquote {
+    font-size: 1.5em;
+    font-style: italic;
+    min-height: 120px;
+}
+.quote-box-project button {
+    width: 200px;
+    height: 30px;
+    background-color: #000000;
+    color: white;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+.quote-box-project button:hover{
+    background-color: aliceblue;
+    color: black;
+    transform: scale(1.1);
+}
+    </style>
+</head>
+<body>
+    <div class="exemplo-interativo quote-box-project">
+    <blockquote id="citacao">
+        <p id="textoCitacao">...</p>
+        <footer id="autorCitacao"></footer>
+    </blockquote>
+    <button id="btnNovaCitacao">Gerar Nova Citação</button>
+    <script>
+        const textoCitacaoEl = document.getElementById('textoCitacao');
+const autorCitacaoEl = document.getElementById('autorCitacao');
+const btnNovaCitacao = document.getElementById('btnNovaCitacao');
+
+const citacoes = [
+    {
+        texto: "Só sei que nada sei.",
+        autor: "Jhonny Allex"
+    },
+    {
+        texto: "Continue indo para frente pra não ir para trás",
+        autor: "James Hamilton"
+    },
+    // ... mais citações
+];
+
+function gerarNovaCitacao() {
+    // Gera um número aleatório entre 0 e o tamanho do array - 1
+    const indiceAleatorio = Math.floor(Math.random() * citacoes.length);
+    
+    // Seleciona uma citação aleatória do array
+    const citacaoSorteada = citacoes[indiceAleatorio];
+
+    // Atualiza o HTML com o texto e o autor
+    textoCitacaoEl.textContent = `"${citacaoSorteada.texto}"`;
+    autorCitacaoEl.textContent = `— ${citacaoSorteada.autor}`;
+}
+
+btnNovaCitacao.addEventListener('click', gerarNovaCitacao);
+
+// Gera a primeira citação ao carregar a página
+gerarNovaCitacao();
+    </script>
+</div>
+</body>
+</html>
